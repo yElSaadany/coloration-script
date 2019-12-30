@@ -1,0 +1,81 @@
+[{
+  "id": "MRKWC00020180222ee2m0050l",
+  "body": "A young girl was injured by an emotional support dog while boarding a Southwest Airlines (LUV, US) flight from Phoenix to Portland, Ore., the airline confirmed. Southwest said its initial reports indicate that the dog's teeth scraped the girl's forehead after she approached the animal. Luckily, paramedics checked out the girl and cleared her for the flight. The dog and its handler exited the flight, which departed 20 minutes late, Southwest said. Don't miss:The number of cruise ships failing health and safety inspections hits 10-year high \"As always, the safety of our customers is our highest priority,\" the company said in a statement. \"We're constantly evaluating our policies and procedures, as Southwest is committed to providing an accessible travel experience for customers with disabilities.\" The airline said it requires passengers who wish to travel with an emotional support animal to provide it with proper documentation, the requirements of which are outlined on the airline's website. The document must be printed on letterhead from a mental health professional or medical doctor. Additionally, it needs to outline the passenger's mental illness or disability and why the animal is needed. In recent weeks, airlines have faced a number of controversies involving emotional support animals as more passengers attempt to fly with them. In January, United Airlines (UAL, US) denied a passenger's request to travel with her emotional support peacock. Another woman claimed she was told to flush her hamster down the toilet by Spirit Airlines (SAVE, US) personnel after she was barred from flying with it. Spirit denied the allegations and said its policies prohibited passengers from traveling with reptiles, rodents, ferrets or spiders. Delta Airlines (DAL, US) recently announced that it would begin requiring more documentation from travelers looking to bring emotional support animals with them, including veterinary records. More from MarketWatchYour airline overhead bins may now be reserved How to hurricane-proof a Caribbean or Florida vacation Will Virgin's latest venture have the cruise industry seeing green?",
+  "sentences": [
+    {
+      "id": "0",
+      "text": "A young girl was injured by an emotional support dog while boarding a Southwest Airlines (LUV, US) flight from Phoenix to Portland, Ore., the airline confirmed.",
+      "sentiment": "0.26"
+    },
+    {
+      "id": "1",
+      "text": "Southwest said its initial reports indicate that the dog's teeth scraped the girl's forehead after she approached the animal.",
+      "sentiment": "0.99"
+    },
+    {
+      "id": "2",
+      "text": "Luckily, paramedics checked out the girl and cleared her for the flight.",
+      "sentiment": "0.4"
+    },
+    {
+      "id": "3",
+      "text": "The dog and its handler exited the flight, which departed 20 minutes late, Southwest said.",
+      "sentiment": "0.02"
+    },
+    {
+      "id": "4",
+      "text": "Don't miss:The number of cruise ships failing health and safety inspections hits 10-year high \"As always, the safety of our customers is our highest priority,\" the company said in a statement.",
+      "sentiment": "0.12"
+    },
+    {
+      "id": "5",
+      "text": "\"We're constantly evaluating our policies and procedures, as Southwest is committed to providing an accessible travel experience for customers with disabilities.\"",
+      "sentiment": "0.76"
+    },
+    {
+      "id": "6",
+      "text": "The airline said it requires passengers who wish to travel with an emotional support animal to provide it with proper documentation, the requirements of which are outlined on the airline's website.",
+      "sentiment": "0.53"
+    },
+    {
+      "id": "7",
+      "text": "The document must be printed on letterhead from a mental health professional or medical doctor.",
+      "sentiment": "0.81"
+    },
+    {
+      "id": "8",
+      "text": "Additionally, it needs to outline the passenger's mental illness or disability and why the animal is needed.",
+      "sentiment": "0.6"
+    },
+    {
+      "id": "9",
+      "text": "In recent weeks, airlines have faced a number of controversies involving emotional support animals as more passengers attempt to fly with them.",
+      "sentiment": "0.21"
+    },
+    {
+      "id": "10",
+      "text": "In January, United Airlines (UAL, US) denied a passenger's request to travel with her emotional support peacock.",
+      "sentiment": "0.74"
+    },
+    {
+      "id": "11",
+      "text": "Another woman claimed she was told to flush her hamster down the toilet by Spirit Airlines (SAVE, US) personnel after she was barred from flying with it.",
+      "sentiment": "0.90"
+    },
+    {
+      "id": "12",
+      "text": "Spirit denied the allegations and said its policies prohibited passengers from traveling with reptiles, rodents, ferrets or spiders.",
+      "sentiment": "0.42"
+    },
+    {
+      "id": "13",
+      "text": "Delta Airlines (DAL, US) recently announced that it would begin requiring more documentation from travelers looking to bring emotional support animals with them, including veterinary records.",
+      "sentiment": "0.30"
+    },
+    {
+      "id": "14",
+      "text": "More from MarketWatchYour airline overhead bins may now be reserved How to hurricane-proof a Caribbean or Florida vacation Will Virgin's latest venture have the cruise industry seeing green?",
+      "sentiment": "0.24"
+    }
+  ]
+}]
