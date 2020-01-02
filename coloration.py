@@ -21,10 +21,8 @@ def to_file(data, output, template=None):
             else:
                 html.write("<head>")
                 html.write("<link rel='stylesheet' type='text/css' href='templates/%s.css'>" % template)
+                html.write("<link rel='stylesheet' type='text/css' href='style.css'>")
                 html.write("</head>")
-            html.write("<script>")
-            html.write("")
-            html.write("</script>")
             html.write("<body><p><div id='info'></div>")
 
             for line in document['sentences']:
@@ -34,16 +32,17 @@ def to_file(data, output, template=None):
                     if a < 0.1:
                         a = 0.2
                     green = 'background-color: rgba(0, 255, 0, %f); font-weight: bold' % a
-                    html.write("<span id='%s' style='%s'>%s</span>\n" % (line['id'], green, line['text']))
+                    html.write("<span class='sen' id='%s' style='%s'>%s</span>\n" % (line['sentiment'], green, line['text']))
                 elif float(line['sentiment']) <= 0.25:
                     a = 1 - float(line['sentiment']) * float(4)
                     if a < 0.1:
                         a = 0.2
                     red = 'background-color: rgba(255, 0, 0, %f); font-weight: bold' % a
-                    html.write("<span id='%s' style='%s'>%s</span>\n" % (line['id'], red, line['text']))
+                    html.write("<span class='sen' id='%s' style='%s'>%s</span>\n" % (line['sentiment'], red, line['text']))
                 else:
                     html.write("<span id='%s'>%s</span>\n" % (line['id'], line['text']))
             html.write("</p></body>")
+            html.write("<script src='coloration.js'></script>")
             html.write("</html>")
 
 
