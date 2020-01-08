@@ -1,5 +1,6 @@
 import json
 import argparse
+import os
 
 
 def init_args():
@@ -68,12 +69,32 @@ def only_html(data):
         print('</p>')
 
 
+def get_news_data(news_json):
+    with open(news_json, 'r+') as jdoc:
+        return json.load(jdoc)
+
+
+def generate_multiple_html(folder, output_folder):
+    news_json = os.listdir(folder)
+    # TODO: prob need to check file names for json and also to store id
+    # TODO: something better than a for loop
+    for news_name in news_json:
+        news = get_news_data(folder + '/' + news_name)
+        name = "%s/%s.html" % (output_folder, news_name.split('.')[0])
+        to_file(news, name, "default")
+
+
 if __name__ == '__main__':
     args = init_args()
-    with open(args.input, 'r+') as jdoc:
-        data = json.load(jdoc)
 
-    if args.o is not None:
-        to_file(data, args.o, args.t)
+    if os.path.isdir(args.input):
+        # TODO: make name of output folder an option
+        if not os.path.isdir("results"):
+            os.mkdir("results")
+        generate_multiple_html(args.input, "results")
     else:
-        only_html(data)
+        data = get_news_data(args.input)
+        if args.o is not None:
+            to_file(data, args.o, args.t)
+        else:
+            only_html(data)
