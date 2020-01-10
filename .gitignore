@@ -3,3 +3,7 @@
 coloration.html
 .prettierrc
 *.json
+results/
+results_csv/
+results_excel/
+news_id
