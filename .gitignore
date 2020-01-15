@@ -6,4 +6,10 @@ coloration.html
 results/
 results_csv/
 results_excel/
+results_html/
+results200/
+results2/
+__pycache__/
+old/
+*.jpg
 news_id
