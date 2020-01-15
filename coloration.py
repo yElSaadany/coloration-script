@@ -1,6 +1,7 @@
 import json
 import argparse
 import os
+import math
 # Pandas until something better
 from pandas.io.excel import ExcelWriter
 import pandas as pd
@@ -15,6 +16,10 @@ def init_args():
                         action="store_true", default=False)
     args = parser.parse_args()
     return args
+
+
+def coloring(x):
+    return 1 - math.cos(math.pi * (x - 0.5))**2
 
 
 def to_file(data, output="id", template=None):
@@ -34,22 +39,13 @@ def to_file(data, output="id", template=None):
         html.write("<body><p><div id='info'></div>")
 
         for line in document['sentences']:
-            print(line)
-            if float(line['sentiment']) >= 0.75:
-                a = 1 - float(line['sentiment'])
-                a = 1 - a * float(4)
-                if a < 0.1:
-                    a = 0.2
+            # Gradation
+            a = coloring(line['sentiment'])
+            if line['sentiment'] > 0.50:
                 green = 'background-color: rgba(0, 255, 0, %f); font-weight: bold' % a
-                html.write("<span class='sen' id='%s' style='%s'>%s</span>\n" % (line['sentiment'], green, line['text']))
-            elif float(line['sentiment']) <= 0.25:
-                a = 1 - float(line['sentiment']) * float(4)
-                if a < 0.1:
-                    a = 0.2
-                red = 'background-color: rgba(255, 0, 0, %f); font-weight: bold' % a
-                html.write("<span class='sen' id='%s' style='%s'>%s</span>\n" % (line['sentiment'], red, line['text']))
             else:
-                html.write("<span id='%s'>%s</span>\n" % (line['sentiment'], line['text']))
+                green = 'background-color: rgba(255, 0, 0, %f); font-weight: bold' % a
+            html.write("<span class='sen' id='%s' style='%s'>%s</span>\n" % (line['sentiment'], green, line['text']))
         html.write("</p></body>")
         html.write("<script src='coloration.js'></script>")
         html.write("</html>")
