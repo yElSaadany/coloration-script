@@ -9,7 +9,7 @@ import pandas as pd
 def init_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("input", help="JSON file on which you have the sentiment analysis")
-    parser.add_argument("-o", help="Output html file, will print to standard output if not selected")
+    parser.add_argument("-o", help="Output html file, will print to standard output if not selected", default="results")
     parser.add_argument("-t", help="HTML Template")
     parser.add_argument("-m", help="Split documents into multiple HTMLs each named their document's id",
                         action="store_true", default=False)
@@ -154,16 +154,15 @@ if __name__ == '__main__':
     args = init_args()
 
     if os.path.isdir(args.input):
-        # TODO: make name of output folder an option
-        if not os.path.isdir("results"):
-            os.mkdir("results")
-        generate_multiple_html(args.input, "results")
+        if not os.path.isdir(args.o):
+            os.mkdir(args.o)
+        generate_multiple_html(args.input, args.o)
     else:
         data = get_news_data(args.input)
         if args.m:
-            if not os.path.isdir("results"):
-                os.mkdir("results")
-            multiple_html_json(data)
+            if not os.path.isdir(args.o):
+                os.mkdir(args.o)
+            multiple_html_json(data, args.o)
         elif args.o is not None:
             to_file(data, args.o, args.t)
         else:
