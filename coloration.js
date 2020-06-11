@@ -1,11 +1,12 @@
 const sentences = document.getElementsByClassName("sen");
 
 function fun(element) {
-  return function(e) {
+  return function (e) {
     let infoBlock = document.createElement("div");
     infoBlock.setAttribute("id", "infoBlock");
     infoBlock.setAttribute("class", "infoBlock");
-    infoBlock.innerHTML = "<h1>" + Math.round(element.getAttribute("id") * 100) / 100 + "</h1>";
+    infoBlock.innerHTML =
+      "<h1>" + Math.round(element.getAttribute("id") * 100) / 100 + "</h1>";
     infoBlock.style.top = e.clientY + "px";
     infoBlock.style.left = e.clientX + "px";
     infoBlock.style.backgroundColor = "grey";
