@@ -10,7 +10,7 @@ import pandas as pd
 def init_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("input", help="JSON file on which you have the sentiment analysis")
-    parser.add_argument("-o", help="Output html file, will print to standard output if not selected", default="results")
+    parser.add_argument("-o", help="Output html file, will print to standard output if not selected", default="output")
     parser.add_argument("-t", help="HTML Template")
     parser.add_argument("-m", help="Split documents into multiple HTMLs each named their document's id",
                         action="store_true", default=False)
@@ -19,10 +19,21 @@ def init_args():
 
 
 def coloring(x):
+    """Nice smooth coloring"""
     return 1 - math.cos(math.pi * (x - 0.5))**2
 
 
 def to_file(data, output="id", template=None):
+    """Creates an HTML file with the colored sentences.
+
+    TODO: Templates.
+
+    Args:
+        data (dict): JSON doc with (see an .json exemple to have the structure)
+        template (str): Future feature, not in use right now.
+                        The idea is to have multiple HTML/CSS templates
+                        to choose from.
+    """
     if output == "id":
         output = data['id'] + ".html"
     with open(output, 'w') as html:
@@ -52,6 +63,17 @@ def to_file(data, output="id", template=None):
 
 
 def only_html(data):
+    """Outputs HTML directly on standard output
+
+    Note:
+        Does not use coloring().
+
+    TODO: Use coloring().
+
+    Args:
+        data (dict): JSON doc with (see an .json exemple to have the structure)
+
+    """
     for document in data:
         print('<p>')
         for line in document['sentences']:
@@ -74,11 +96,19 @@ def only_html(data):
 
 
 def get_news_data(news_json):
+    """Makes a dict out of a JSON file"""
     with open(news_json, 'r+') as jdoc:
         return json.load(jdoc)
 
 
 def generate_multiple_html(folder, output_folder):
+    """Makes as many HTML files as there are JSON files
+
+    Args:
+        folder (str): Folder containing the JSON files
+        output_folder (str): Folder to put the HTML files
+    
+    """
     news_json = os.listdir(folder)
     # TODO: prob need to check file names for json and also to store id
     # TODO: something better than a for loop
@@ -89,32 +119,42 @@ def generate_multiple_html(folder, output_folder):
 
 
 def multiple_html_json(documents, output_folder="results"):
+    """Same as generate_multiple_html() but with one JSON file
+
+    Args:
+        documents (dict): Dict made from get_news_data()
+        output_folder (str): Folder to put the HTML files
+
+    """
     for doc in documents:
         to_file(doc, "%s/%s.html" % (output_folder, doc["id"]), "default")
 
 
 def from_csv_to_excel(csv, id):
+    """Makes an excel stylesheet out of a CSV (For user tests)."""
     try:
         with ExcelWriter(id+'.xlsx') as ew:
-            pandas.read_csv(csv).to_excel(ew, sheet_name="sheet", index=None)
+            pd.read_csv(csv).to_excel(ew, sheet_name="sheet", index=None)
     except:
         pass
 
 
 def to_csv(json, output_folder='results_csv', excel=False):
+    """WIP. Makes CSVs out of the sentiments. (For user tests)"""
     documents = get_news_data(json)
     for document in documents:
         output_file = output_folder + '/' + document['id'] + '.csv'
         with open(output_file, 'w+') as csv:
             for sentence in document['sentences']:
                 line = '%s,%s,%f,0\n' % (sentence['id'],
-                                       sentence['text'],
-                                       sentence['sentiment'])
+                                         sentence['text'],
+                                         sentence['sentiment'])
                 csv.write(line)
         from_csv_to_excel(output_file, 'results_excel' + '/' + document['id'])
 
 
 def load_dataframe(json):
+    """Helper function of store_to_file()."""
     documents = get_news_data(json)
     frames = []
     id = []
@@ -131,6 +171,13 @@ def load_dataframe(json):
 
 
 def store_to_file(json, csv=False, excel=False):
+    """Better than to_csv() and from_csv_to_excel() but needs Pandas
+    
+    Note:
+        Prefer this function to have a CSV/Excel file from the
+        JSON sentiments file.
+    
+    """
     id, frames = load_dataframe(json)
 
     i = 0
@@ -149,11 +196,14 @@ def store_to_file(json, csv=False, excel=False):
 if __name__ == '__main__':
     args = init_args()
 
+    # If the input arg is a folder (that means we want a compute
+    # the JSON file in that folder).
     if os.path.isdir(args.input):
         if not os.path.isdir(args.o):
             os.mkdir(args.o)
         generate_multiple_html(args.input, args.o)
     else:
+        # Else means that the sentiments are in a single JSON file.
         data = get_news_data(args.input)
         if args.m:
             if not os.path.isdir(args.o):
